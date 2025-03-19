@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-import { cookies } from "next/headers";
+// import { cookies } from "next/headers";
 
 // export async function GET(request: Request) {
 //   return new Response("<h1>Hello, Next.js!<h1/>", {

@@ -1,21 +1,16 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import SSR from "../ssr/page";
 
 // import { useEffect, useState } from "react";
 // export dynamic = 'force-dynamic';
-export default function ClientComponent({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  const [data, setData] = useState(null);
+export default function ClientComponent() {
+  const [data, setData] = useState<Record<string, unknown> | null>(null);
   useEffect(() => {
     async function fetchData() {
       const response = await fetch("http://localhost:3000/api/test", {
         headers: {
-          authrization: "Bearer 123",
+          authorization: "Bearer 123",
         },
       });
 
@@ -34,7 +29,7 @@ export default function ClientComponent({
   return (
     <div>
       <p>API Response: {JSON.stringify(data)}</p>
-      {children}
+      {/* {children} */}
     </div>
   );
 }

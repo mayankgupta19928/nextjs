@@ -1,11 +1,9 @@
 "use client";
 // import { useSession, signIn, signOut } from "next-auth/react";
 // import { cookies } from "next/headers";
-import React from "react";
 import Temp2 from "./(component)/_temp2/page";
 
 export default function Component() {
-  const [state, setState] = React.useState<any>(null);
   // const { data: session }: any = useSession();
   // const cookie = cookies().then((v) => {
   //   setState(v.get("session")?.value);

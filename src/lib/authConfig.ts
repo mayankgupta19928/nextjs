@@ -5,7 +5,13 @@ export const authConfig = {
     signIn: "/login",
   },
   callbacks: {
-    async session({ session, token }: { session: any; token: any }) {
+    async session({
+      session,
+      token,
+    }: {
+      session: { user: { id: number } };
+      token: { sub: number };
+    }) {
       session.user.id = token.sub;
       return session;
     },

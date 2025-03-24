@@ -2,9 +2,21 @@
 
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+// import { redirect } from "next/navigation";
+const protectedRoutes = ["/home"];
 
 export function middleware(request: NextRequest) {
+  const url = request.nextUrl.clone();
+
   // Clone the request headers and set a new header `x-hello-from-middleware1`
+  console.log("middleware", protectedRoutes.includes(request.nextUrl.pathname));
+  const token = request.cookies.get("token")?.value;
+
+  if (protectedRoutes.includes(request.nextUrl.pathname) && !token) {
+    // redirect("/login");
+    return NextResponse.redirect(new URL("/login", request.url));
+  }
+
   const requestHeaders = new Headers(request.headers);
   requestHeaders.set("x-hello-from-middleware1", "hello");
 
@@ -20,9 +32,9 @@ export function middleware(request: NextRequest) {
   response.headers.set("x-hello-from-middleware2", "hello");
   return response;
 }
-export const config = {
-  matcher: ["/api/test"], // Apply middleware only to API routes
-};
+// export const config = {
+//   matcher: ["/csr"], // Apply middleware only to API routes
+// };
 
 // Apply middleware to specific routes (optional)
 // export const config = {
